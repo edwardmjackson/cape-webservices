@@ -9,6 +9,11 @@
 #git config --global user.email "edwardmjackson@gmail.com"
 #git config --global user.name "Ed Jackson"
 
+sudo apt install -y python3-venv
+mkdir ~/environments
+cd ~/environments
+python3 -m venv cape 
+source cape/bin/activate
 
 sudo apt-get -y update && \
     apt-get install -y python-dev python3-dev python3-pip git zlib1g-dev\
