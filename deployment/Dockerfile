@@ -24,22 +24,36 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 ENV PYTHONIOENCODING utf-8
 
+# Ubunut Variables if you want to test 
+# export locale-gen="en_US.UTF-8"
+# export LC_ALL="en_US.UTF-8"
+# export LANG="en_US.UTF-8"
+# export LANGUAGE="en_US.UTF-8"
+# export PYTHONIOENCODING="utf-8"
+
 #Add non-root user to run app
 RUN useradd -G users -m runner
 
 WORKDIR /mnt/
 #Argument to rebuild from this point after an update
 ARG COMMIT_SHA1=1
-RUN pip3 install -vv --process-dependency-links --upgrade git+https://github.com/bloomsburyai/cape-frontend
-RUN pip3 install -vv --process-dependency-links --upgrade git+https://github.com/bloomsburyai/cape-webservices
+# RUN pip3 install -vv --process-dependency-links --upgrade git+https://github.com/bloomsburyai/cape-frontend
+# RUN pip3 install -vv --process-dependency-links --upgrade git+https://github.com/bloomsburyai/cape-webservices
+
+RUN pip3 install -vv --upgrade git+https://github.com/edwardmjackson/cape-frontend
+RUN pip3 install -vv --upgrade git+https://github.com/edwardmjackson/cape-webservices
+
 #Run model tests to automatically download latest standard production model
-RUN pytest -vs --pyargs cape_document_qa.tests
+#RUN pytest -vs --pyargs cape_document_qa.tests
 EXPOSE 5050
 EXPOSE 5051
 #Default configuration
 ENV PORT 5050
 ENV FRONTEND_PORT 5051
 ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
+
+#export PORT=5050
+#export FRONTEND_PORT=5051
 
 ########################################
 ## CAPE DEFAULT ENVIRONMENT VARIABLES ##
