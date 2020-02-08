@@ -9,11 +9,73 @@
 #git config --global user.email "edwardmjackson@gmail.com"
 #git config --global user.name "Ed Jackson"
 
+#Setup the python venv 
 sudo apt install -y python3-venv
 mkdir ~/environments
 cd ~/environments
 python3 -m venv cape 
 source cape/bin/activate
+
+cd ~/git
+git clone https://github.com/edwardmjackson/cape-web-services
+git clone https://github.com/edwardmjackson/cape-document-qa
+git clone https://github.com/edwardmjackson/cape-responder
+git clone https://github.com/edwardmjackson/cape-frontend
+git clone https://github.com/edwardmjackson/cape-userdb
+git clone https://github.com/edwardmjackson/cape-machine-reader
+git clone https://github.com/edwardmjackson/cape-splitter
+git clone https://github.com/edwardmjackson/cape-api-helpers
+git clone https://github.com/edwardmjackson/cape-document-manager
+
+pip install -r ./cape-api-helpers/requirements.txt  
+pip install -r ./cape-splitter/requirements.txt 
+sudo apt-get install libsqlite3-dev
+pip install -r ./cape-userdb/requirements.txt  
+pip install -r ./cape-frontend/requirements.txt  
+pip install -r ./cape-machine-reader/requirements.txt  
+pip install -r ./cape-document-qa/requirements.txt 
+pip install -r ./cape-document-manager/requirements.txt  
+pip install -r ./cape-responder/requirements.txt  
+pip install -r ./cape-webservices/requirements.txt
+
+cd ~/git
+cd ./cape-api-helpers  
+git commit -a -m requirements.txt 
+git push 
+cd ..
+cd ./cape-splitter 
+git commit -a -m requirements.txt 
+git push 
+cd ..
+cd ./cape-userdb  
+git commit -a -m requirements.txt 
+git push 
+cd ..
+cd ./cape-frontend  
+git commit -a -m requirements.txt 
+git push 
+cd ..
+cd ./cape-machine-reader  
+git commit -a -m requirements.txt 
+git push 
+cd ..
+cd ./cape-document-qa 
+git commit -a -m requirements.txt 
+git push 
+cd ..
+cd ./cape-document-manager  
+git commit -a -m requirements.txt 
+git push 
+cd ..
+cd ./cape-responder  
+git commit -a -m requirements.txt 
+git push 
+cd ..
+cd ./cape-webservices
+git commit -a -m requirements.txt 
+git push 
+cd ..
+
 
 sudo apt-get -y update && \
     apt-get install -y python-dev python3-dev python3-pip git zlib1g-dev\
